@@ -66,14 +66,14 @@ created.
 
 ## Special Props
 
-- children: he prop name children is utomatically added to this.props by
+- **children:** he prop name children is utomatically added to this.props by
 **React.createElement**
-- className: This prop corresponds to the HTML's class attribute
-- htmlFor: Same as className only for the "for" attribute
-- key: he key prop uniquely identifies a ReactElement. It's used with elements in
+- **className:** This prop corresponds to the HTML's class attribute
+- **htmlFor:** Same as className only for the "for" attribute
+- **key:** he key prop uniquely identifies a ReactElement. It's used with elements in
 arrays
-- ref:  ref prop accepts a callback function
-- style: The style prop accepts an object of styles, instead of a string. n React, there is
+- **ref:**  ref prop accepts a callback function
+- **style:** The style prop accepts an object of styles, instead of a string. n React, there is
 no mechanism for specifying CSS styles as a text string.
 
 ## PropTypes
@@ -90,15 +90,12 @@ Components are defined by createClass method existing on the main React object:
 var MyComponent = React.createClass({
 
     displayName: 'MyComponent',
-
     /* This is the core of your React Class
         options and lifecycle methods will be written here */
-
     render: function() {
         // Once rendered, let's return a newly created element
         return React.createElement( /* … */ );
     }
-
 });
 ```
 ## Component Options
@@ -200,9 +197,11 @@ component is purposely used within your application.
 
 ```js
 var component = React.createElement( ComponentDefinition );
-/* In reality, ComponentDefinition would correspond to a component like LoginScreen, NavigationMenu or Button. 
+/* In reality, ComponentDefinition would correspond to a component like 
+LoginScreen, NavigationMenu or Button. 
 It is not yet physically existent anywhere in the
-primary JavaScript's document (DOM) object. But this is true only until render method is executed on this component.
+primary JavaScript's document (DOM) object. But this is true only until 
+render method is executed on this component.
 */
 React.render(component, container);
 //Here, container is just some is of a DIV or other HTML element
@@ -211,4 +210,47 @@ This mounting mechanism make React a versatile library. Because at its
 basic principle, React also doesn't care whether the final result is rendered in the
 DOM or elsewhere.
 
-## Gem 7 - Node.js & NPM
+## props
+In React, props take on the "pure" ideology. This means you can pass them,
+under the condition that your react component will not be changing their values
+from within itself. This is exactly what makes react props read-only. It's good to
+stick to that rule.
+
+## Handling Component Events
+Always remember that a React component has state. The whole purpose of
+components is to be tied to a custom state represented by that component's object.
+A state is an object with data. But components also have helper functions that
+make it easier to control how these states will work in a given context. 
+
+### Method 1 - getInitialState
+Each component is in charge of rendering its own state but the method
+getInitialState is always called before our render function. This has similar
+functionality to an object constructor function. Here we set the default values.
+```js
+var Example = React.createClass( {
+    getInitialState: function() {
+        return {
+            state: 0;
+        }
+    }
+});
+```
+You can use this method interchangeably with the default constructor method
+provided in EcmaScript 6:
+```js
+class Example extends React.Component( {
+    constructor: function() {
+        this.state: 0;
+    }
+});
+```
+### Method 2 - componentDidMount
+componentDidMount is called automatically by React when a component is
+rendered. By adding it to your custom React component, you are overloading it.
+Overloading means, adding your own functionality to the method that already exists
+in the default  React component object, from which you are extending your own
+custom component. That's the whole purpose of using extend keyword. We're
+extending default functionality of React's  component object already provided by
+the library. This method is always called after
+executing render command from the component.
+
