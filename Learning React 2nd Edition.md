@@ -77,3 +77,56 @@ These missing parentheses are the source of countless bugs in JavaScript and Rea
 - Higher-Order Functions
 - Recursion
 - Composition
+
+## Chapter 6. React State Management
+
+[codesandbox](https://codesandbox.io/s/star-component-ln3u7?file=/src/App.js)
+
+### Creating Custom Hooks
+When you have a large form with a lot of input elements, you may betempted to copy and paste these two lines of code:
+
+```js
+value={title}
+onChange={event => setTitle(event.target.value)}
+```
+
+We can package the details necessary to create controlled form components into a custom hook. We could create our own useInput hook where we can abstract away the redundancy involved with creating controlled form inputs:
+
+```js
+import { useState } from "react";
+
+export const useInput = initialValue => {
+  const [value, setValue] = useState(initialValue);
+  return [
+    { value, onChange: e => setValue(e.target.value) },
+    () => setValue(initialValue)
+  ];
+};
+```
+Then we can use it as:
+
+```js
+export default function Form() {
+  const [titleProps, resetTitle] = useInput("");
+
+
+const submit = event => {
+  event.preventDefault();
+  onNewColor(titleProps.value);
+  resetTitle();
+};
+
+return (
+  <form onSubmit={submit}>
+    <input
+      {...titleProps}
+      type="text"
+      placeholder="color title..."
+      required
+    />
+    <button>ADD</button>
+  </form>
+);
+}
+}
+```
