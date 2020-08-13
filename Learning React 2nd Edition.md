@@ -54,6 +54,7 @@ These missing parentheses are the source of countless bugs in JavaScript and Rea
 ## Compiling JavaScript
 ## Objects and Arrays
 - Destructuring Objects
+- Assignment without declaration: `({a, b} = {a: 1, b: 2});` The parentheses ( ... ) around the assignment statement are required when using object literal destructuring assignment without a declaration.
 - Destructuring Arrays
 - Object Literal Enhancement
 - The Spread Operator
