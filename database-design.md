@@ -1,1 +1,2 @@
 - [Database Design – 2nd Edition](https://opentextbc.ca/dbdesign01/chapter/chapter-1-before-the-advent-of-database-systems/)
+- database backup and migration mongodb
