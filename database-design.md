@@ -36,3 +36,6 @@ Data modelling is the first step in the process of database design. This step is
 ### Schemas
 
 A schema is an overall description of a database, and it is usually represented by the entity relationship diagram (ERD).
+
+[Interesting blog](https://www.guru99.com/introduction-to-mysql-workbench.html)
+
